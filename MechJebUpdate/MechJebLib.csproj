@@ -1,0 +1,236 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{E4E39E74-233B-4697-A8D5-D37C424398A7}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>MuMechJeb</RootNamespace>
+    <AssemblyName>MuMechLib</AssemblyName>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Assembly-CSharp">
+      <HintPath>..\..\..\KSP_Sys\KSP_Data\Managed\Assembly-CSharp.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="UnityEngine">
+      <HintPath>..\..\..\KSP_Sys\KSP_Data\Managed\UnityEngine.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ARUtils.cs" />
+    <Compile Include="ComputerModule.cs" />
+    <Compile Include="DebugatronSocket.cs" />
+    <Compile Include="FloatCurveEditor.cs" />
+    <Compile Include="FuelFlowAnalyzer.cs" />
+    <Compile Include="HullCamera.cs" />
+    <Compile Include="HullCameraZoom.cs" />
+    <Compile Include="JSONSharp\Collections\JSONArrayCollection.cs" />
+    <Compile Include="JSONSharp\Collections\JSONObjectCollection.cs" />
+    <Compile Include="JSONSharp\JSONReflector.cs" />
+    <Compile Include="JSONSharp\JSONValue.cs" />
+    <Compile Include="JSONSharp\JSONValueCollection.cs" />
+    <Compile Include="JSONSharp\Values\JSONBoolValue.cs" />
+    <Compile Include="JSONSharp\Values\JSONNumberValue.cs" />
+    <Compile Include="JSONSharp\Values\JSONStringValue.cs" />
+    <Compile Include="KerbalAccessorizer.cs" />
+    <Compile Include="LiquidRCSModule.cs" />
+    <Compile Include="Lua.cs" />
+    <Compile Include="MathExtensions.cs" />
+    <Compile Include="MechJeb.cs" />
+    <Compile Include="MechJebAR202.cs" />
+    <Compile Include="MechJebCore.cs" />
+    <Compile Include="MechJebModuleAscentAutopilot.cs" />
+    <Compile Include="MechJebModuleAutom8.cs" />
+    <Compile Include="MechJebModuleILS.cs" />
+    <Compile Include="MechJebModuleJoke.cs" />
+    <Compile Include="MechJebModuleLandingAutopilot.cs" />
+    <Compile Include="MechJebModuleOrbitInfo.cs" />
+    <Compile Include="MechJebModuleOrbitOper.cs" />
+    <Compile Include="MechJebModulePlanitron.cs" />
+    <Compile Include="MechJebModuleRendezvous.cs" />
+    <Compile Include="MechJebModuleSmartASS.cs" />
+    <Compile Include="MechJebModuleSurfaceInfo.cs" />
+    <Compile Include="MechJebModuleTablePhase.cs" />
+    <Compile Include="MechJebModuleTranslatron.cs" />
+    <Compile Include="MechJebModuleVesselInfo.cs" />
+    <Compile Include="MechJebPod.cs" />
+    <Compile Include="MechJebPod2.cs" />
+    <Compile Include="MuonDetector.cs" />
+    <Compile Include="MuUtils.cs" />
+    <Compile Include="Obliterator.cs" />
+    <Compile Include="OrbitExtensions.cs" />
+    <Compile Include="Part.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Radiator.cs" />
+    <Compile Include="RCS2Liquid.cs" />
+    <Compile Include="RCSLiquidEngine.cs" />
+    <Compile Include="Servo.cs" />
+    <Compile Include="SettingsManager.cs" />
+    <Compile Include="SharpLua\AssemblyCache.cs" />
+    <Compile Include="SharpLua\Autom8Console.cs" />
+    <Compile Include="SharpLua\Chunk\Assignment.cs" />
+    <Compile Include="SharpLua\Chunk\BreakStmt.cs" />
+    <Compile Include="SharpLua\Chunk\Chunk.cs" />
+    <Compile Include="SharpLua\Chunk\DoStmt.cs" />
+    <Compile Include="SharpLua\Chunk\ExprStmt.cs" />
+    <Compile Include="SharpLua\Chunk\ForInStmt.cs" />
+    <Compile Include="SharpLua\Chunk\ForStmt.cs" />
+    <Compile Include="SharpLua\Chunk\Function.cs" />
+    <Compile Include="SharpLua\Chunk\IfStmt.cs" />
+    <Compile Include="SharpLua\Chunk\LocalFunc.cs" />
+    <Compile Include="SharpLua\Chunk\LocalVar.cs" />
+    <Compile Include="SharpLua\Chunk\RepeatStmt.cs" />
+    <Compile Include="SharpLua\Chunk\ReturnStmt.cs" />
+    <Compile Include="SharpLua\Chunk\Statement.cs" />
+    <Compile Include="SharpLua\Chunk\WhileStmt.cs" />
+    <Compile Include="SharpLua\Expr\Access.cs" />
+    <Compile Include="SharpLua\Expr\BaseExpr.cs" />
+    <Compile Include="SharpLua\Expr\BoolLiteral.cs" />
+    <Compile Include="SharpLua\Expr\Expr.cs" />
+    <Compile Include="SharpLua\Expr\FunctionBody.cs" />
+    <Compile Include="SharpLua\Expr\FunctionCall.cs" />
+    <Compile Include="SharpLua\Expr\FunctionValue.cs" />
+    <Compile Include="SharpLua\Expr\GroupExpr.cs" />
+    <Compile Include="SharpLua\Expr\KeyAccess.cs" />
+    <Compile Include="SharpLua\Expr\MethodCall.cs" />
+    <Compile Include="SharpLua\Expr\NameAccess.cs" />
+    <Compile Include="SharpLua\Expr\NilLiteral.cs" />
+    <Compile Include="SharpLua\Expr\NumberLiteral.cs" />
+    <Compile Include="SharpLua\Expr\Operation.cs" />
+    <Compile Include="SharpLua\Expr\OperatorExpr.cs" />
+    <Compile Include="SharpLua\Expr\OperTable.cs" />
+    <Compile Include="SharpLua\Expr\PrimaryExpr.cs" />
+    <Compile Include="SharpLua\Expr\StringLiteral.cs" />
+    <Compile Include="SharpLua\Expr\TableConstructor.cs" />
+    <Compile Include="SharpLua\Expr\Term.cs" />
+    <Compile Include="SharpLua\Expr\VariableArg.cs" />
+    <Compile Include="SharpLua\Expr\VarName.cs" />
+    <Compile Include="SharpLua\ExternalLibraryLoader.cs" />
+    <Compile Include="SharpLua\Inspector.cs" />
+    <Compile Include="SharpLua\Library\BaseLib.cs" />
+    <Compile Include="SharpLua\Library\ClassLib.cs" />
+    <Compile Include="SharpLua\Library\ConsoleLib.cs" />
+    <Compile Include="SharpLua\Library\CoroutineLib.cs" />
+    <Compile Include="SharpLua\Library\FileLib.cs" />
+    <Compile Include="SharpLua\Library\ILuaLibrary.cs" />
+    <Compile Include="SharpLua\Library\IOLib.cs" />
+    <Compile Include="SharpLua\Library\MathLib.cs" />
+    <Compile Include="SharpLua\Library\OSLib.cs" />
+    <Compile Include="SharpLua\Library\PackageLib.cs" />
+    <Compile Include="SharpLua\Library\ScriptLib.cs" />
+    <Compile Include="SharpLua\Library\StringLib.cs" />
+    <Compile Include="SharpLua\Library\TableLib.cs" />
+    <Compile Include="SharpLua\LuaRuntime.cs" />
+    <Compile Include="SharpLua\LuaTypes\LuaBoolean.cs" />
+    <Compile Include="SharpLua\LuaTypes\LuaClass.cs" />
+    <Compile Include="SharpLua\LuaTypes\LuaCoroutine.cs" />
+    <Compile Include="SharpLua\LuaTypes\LuaError.cs" />
+    <Compile Include="SharpLua\LuaTypes\LuaFunction.cs" />
+    <Compile Include="SharpLua\LuaTypes\LuaMultiValue.cs" />
+    <Compile Include="SharpLua\LuaTypes\LuaNil.cs" />
+    <Compile Include="SharpLua\LuaTypes\LuaNumber.cs" />
+    <Compile Include="SharpLua\LuaTypes\LuaString.cs" />
+    <Compile Include="SharpLua\LuaTypes\LuaTable.cs" />
+    <Compile Include="SharpLua\LuaTypes\LuaUserdata.cs" />
+    <Compile Include="SharpLua\LuaTypes\LuaValue.cs" />
+    <Compile Include="SharpLua\LuaUtils.cs" />
+    <Compile Include="SharpLua\ObjectToLua.cs" />
+    <Compile Include="SharpLua\Parser\Parser.cs" />
+    <Compile Include="SharpLua\Parser\ParserException.cs" />
+    <Compile Include="SharpLua\Parser\ParserInput.cs" />
+    <Compile Include="SharpLua\Parser\Syntax\Access.cs" />
+    <Compile Include="SharpLua\Parser\Syntax\Args.cs" />
+    <Compile Include="SharpLua\Parser\Syntax\Assignment.cs" />
+    <Compile Include="SharpLua\Parser\Syntax\BaseExpr.cs" />
+    <Compile Include="SharpLua\Parser\Syntax\BoolLiteral.cs" />
+    <Compile Include="SharpLua\Parser\Syntax\BreakStmt.cs" />
+    <Compile Include="SharpLua\Parser\Syntax\Chunk.cs" />
+    <Compile Include="SharpLua\Parser\Syntax\DoStmt.cs" />
+    <Compile Include="SharpLua\Parser\Syntax\ElseifBlock.cs" />
+    <Compile Include="SharpLua\Parser\Syntax\Expr.cs" />
+    <Compile Include="SharpLua\Parser\Syntax\ExprStmt.cs" />
+    <Compile Include="SharpLua\Parser\Syntax\Field.cs" />
+    <Compile Include="SharpLua\Parser\Syntax\ForInStmt.cs" />
+    <Compile Include="SharpLua\Parser\Syntax\ForStmt.cs" />
+    <Compile Include="SharpLua\Parser\Syntax\Function.cs" />
+    <Compile Include="SharpLua\Parser\Syntax\FunctionBody.cs" />
+    <Compile Include="SharpLua\Parser\Syntax\FunctionCall.cs" />
+    <Compile Include="SharpLua\Parser\Syntax\FunctionName.cs" />
+    <Compile Include="SharpLua\Parser\Syntax\FunctionValue.cs" />
+    <Compile Include="SharpLua\Parser\Syntax\GroupExpr.cs" />
+    <Compile Include="SharpLua\Parser\Syntax\IfStmt.cs" />
+    <Compile Include="SharpLua\Parser\Syntax\ItemValue.cs" />
+    <Compile Include="SharpLua\Parser\Syntax\KeyAccess.cs" />
+    <Compile Include="SharpLua\Parser\Syntax\KeyValue.cs" />
+    <Compile Include="SharpLua\Parser\Syntax\LocalFunc.cs" />
+    <Compile Include="SharpLua\Parser\Syntax\LocalVar.cs" />
+    <Compile Include="SharpLua\Parser\Syntax\MethodCall.cs" />
+    <Compile Include="SharpLua\Parser\Syntax\NameAccess.cs" />
+    <Compile Include="SharpLua\Parser\Syntax\NameValue.cs" />
+    <Compile Include="SharpLua\Parser\Syntax\NilLiteral.cs" />
+    <Compile Include="SharpLua\Parser\Syntax\NumberLiteral.cs" />
+    <Compile Include="SharpLua\Parser\Syntax\OperatorExpr.cs" />
+    <Compile Include="SharpLua\Parser\Syntax\ParamList.cs" />
+    <Compile Include="SharpLua\Parser\Syntax\PrimaryExpr.cs" />
+    <Compile Include="SharpLua\Parser\Syntax\RepeatStmt.cs" />
+    <Compile Include="SharpLua\Parser\Syntax\ReturnStmt.cs" />
+    <Compile Include="SharpLua\Parser\Syntax\Statement.cs" />
+    <Compile Include="SharpLua\Parser\Syntax\StringLiteral.cs" />
+    <Compile Include="SharpLua\Parser\Syntax\TableConstructor.cs" />
+    <Compile Include="SharpLua\Parser\Syntax\Term.cs" />
+    <Compile Include="SharpLua\Parser\Syntax\Var.cs" />
+    <Compile Include="SharpLua\Parser\Syntax\VariableArg.cs" />
+    <Compile Include="SharpLua\Parser\Syntax\VarName.cs" />
+    <Compile Include="SharpLua\Parser\Syntax\WhileStmt.cs" />
+    <Compile Include="SharpLua\Parser\TextInput.cs" />
+    <Compile Include="SharpLua\Parser\TextParserCommon.cs" />
+    <Compile Include="SharpLua\Serializer.cs" />
+    <Compile Include="SharpLua\Tuple.cs" />
+    <Compile Include="SolarPanel.cs" />
+    <Compile Include="SpeechBubble.cs" />
+    <Compile Include="Toggle.cs" />
+    <Compile Include="VariableEngine.cs" />
+    <Compile Include="VariableRCS.cs" />
+    <Compile Include="VariableTank.cs" />
+    <Compile Include="VesselDistanceComparer.cs" />
+    <Compile Include="VesselState.cs" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

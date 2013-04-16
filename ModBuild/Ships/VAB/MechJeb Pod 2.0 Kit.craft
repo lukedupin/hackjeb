@@ -1,0 +1,344 @@
+ship = MechJeb Pod 2.0 Kit
+version = 0.18.1
+type = VAB
+PART
+{
+	part = mumech.mechjebpod2_4292879722
+	partName = MuMechJebPod2
+	pos = 0,5,0
+	rot = 0,0,0,1
+	attRot = 0,0,0,1
+	mir = 1,1,1
+	istg = 0
+	dstg = 0
+	sidx = -1
+	sqor = -1
+	attm = 0
+	link = MultiMech.JebPod.Tank_4292872780
+	attN = bottom,MultiMech.JebPod.Tank_4292872780
+	EVENTS
+	{
+		MakeReference
+		{
+			active = True
+			guiActive = True
+			guiIcon = Control From Here
+			guiName = Control From Here
+			category = Control From Here
+			guiActiveUnfocused = False
+			unfocusedRange = 2
+			externalToEVAOnly = True
+		}
+		RenameVessel
+		{
+			active = True
+			guiActive = True
+			guiIcon = Rename Vessel
+			guiName = Rename Vessel
+			category = Rename Vessel
+			guiActiveUnfocused = False
+			unfocusedRange = 2
+			externalToEVAOnly = True
+		}
+		MechJebLua
+		{
+			active = False
+			guiActive = False
+			guiIcon = 
+			guiName = 
+			category = 
+			guiActiveUnfocused = False
+			unfocusedRange = 0
+			externalToEVAOnly = False
+		}
+	}
+	ACTIONS
+	{
+	}
+	MODULE
+	{
+		name = ModuleCommand
+		isEnabled = True
+		controlSrcStatusText = 
+		EVENTS
+		{
+		}
+		ACTIONS
+		{
+		}
+	}
+}
+PART
+{
+	part = MultiMech.JebPod.Tank_4292872780
+	partName = FuelTank
+	pos = 0,4.49176,0
+	rot = 0,0,0,1
+	attRot = 0,0,0,1
+	mir = 1,1,1
+	istg = 0
+	dstg = 0
+	sidx = -1
+	sqor = -1
+	attm = 0
+	link = MultiMech.JebPod.Engine_4292870988
+	link = MultiMech.JebPod.Engine_4292870932
+	link = MultiMech.JebPod.Engine_4292870876
+	link = MultiMech.JebPod.Engine_4292871520
+	link = MultiMech.JebPod.Leg_4292868126
+	link = MultiMech.JebPod.Leg_4292868084
+	link = MultiMech.JebPod.Leg_4292868042
+	link = MultiMech.JebPod.Leg_4292868366
+	link = MultiMech.JebPod.LockDown_4292860778
+	attN = top,mumech.mechjebpod2_4292879722
+	attN = bottom,MultiMech.JebPod.LockDown_4292860778
+	attN = Engine00,MultiMech.JebPod.Engine_4292871520
+	attN = Engine01,MultiMech.JebPod.Engine_4292870932
+	attN = Engine02,MultiMech.JebPod.Engine_4292870876
+	attN = Engine03,MultiMech.JebPod.Engine_4292870988
+	attN = Leg00,MultiMech.JebPod.Leg_4292868084
+	attN = Leg01,MultiMech.JebPod.Leg_4292868126
+	attN = Leg02,MultiMech.JebPod.Leg_4292868042
+	attN = Leg03,MultiMech.JebPod.Leg_4292868366
+	EVENTS
+	{
+		AllowFlow
+		{
+			active = True
+			guiActive = False
+			guiIcon = Enable flow
+			guiName = Enable flow
+			category = Enable flow
+			guiActiveUnfocused = False
+			unfocusedRange = 2
+			externalToEVAOnly = True
+		}
+		DenyFlow
+		{
+			active = True
+			guiActive = True
+			guiIcon = Disable flow
+			guiName = Disable flow
+			category = Disable flow
+			guiActiveUnfocused = False
+			unfocusedRange = 2
+			externalToEVAOnly = True
+		}
+	}
+	ACTIONS
+	{
+	}
+}
+PART
+{
+	part = MultiMech.JebPod.Engine_4292870988
+	partName = LiquidFuelEngine
+	pos = 4.470348E-08,4.812363,0.7140662
+	rot = 0,0.7071068,0,0.7071068
+	attRot = 0,0,0,1
+	mir = 1,1,1
+	istg = 0
+	dstg = 0
+	sidx = -1
+	sqor = -1
+	attm = 0
+	sym = MultiMech.JebPod.Engine_4292871520
+	sym = MultiMech.JebPod.Engine_4292870932
+	sym = MultiMech.JebPod.Engine_4292870876
+	attN = bottom,MultiMech.JebPod.Tank_4292872780
+	EVENTS
+	{
+	}
+	ACTIONS
+	{
+	}
+}
+PART
+{
+	part = MultiMech.JebPod.Engine_4292870932
+	partName = LiquidFuelEngine
+	pos = 0.7140661,4.812363,-3.278354E-08
+	rot = 0,1,0,-4.371139E-08
+	attRot = 0,0,0,1
+	mir = 1,1,1
+	istg = 0
+	dstg = 0
+	sidx = -1
+	sqor = -1
+	attm = 0
+	sym = MultiMech.JebPod.Engine_4292871520
+	sym = MultiMech.JebPod.Engine_4292870988
+	sym = MultiMech.JebPod.Engine_4292870876
+	attN = bottom,MultiMech.JebPod.Tank_4292872780
+	EVENTS
+	{
+	}
+	ACTIONS
+	{
+	}
+}
+PART
+{
+	part = MultiMech.JebPod.Engine_4292870876
+	partName = LiquidFuelEngine
+	pos = 4.470348E-08,4.812363,-0.7140662
+	rot = 0,0.7071068,0,-0.7071068
+	attRot = 0,0,0,1
+	mir = 1,1,1
+	istg = 0
+	dstg = 0
+	sidx = -1
+	sqor = -1
+	attm = 0
+	sym = MultiMech.JebPod.Engine_4292871520
+	sym = MultiMech.JebPod.Engine_4292870988
+	sym = MultiMech.JebPod.Engine_4292870932
+	attN = bottom,MultiMech.JebPod.Tank_4292872780
+	EVENTS
+	{
+	}
+	ACTIONS
+	{
+	}
+}
+PART
+{
+	part = MultiMech.JebPod.Engine_4292871520
+	partName = LiquidFuelEngine
+	pos = -0.7140661,4.812363,0
+	rot = 0,0,0,1
+	attRot = 0,0,0,1
+	mir = 1,1,1
+	istg = 0
+	dstg = 0
+	sidx = -1
+	sqor = -1
+	attm = 0
+	sym = MultiMech.JebPod.Engine_4292870988
+	sym = MultiMech.JebPod.Engine_4292870932
+	sym = MultiMech.JebPod.Engine_4292870876
+	attN = bottom,MultiMech.JebPod.Tank_4292872780
+	EVENTS
+	{
+	}
+	ACTIONS
+	{
+	}
+}
+PART
+{
+	part = MultiMech.JebPod.Leg_4292868126
+	partName = LandingLeg
+	pos = -0.2431244,4.623868,0.2431244
+	rot = 0,0.7071068,0,0.7071068
+	attRot = 0,0,0,1
+	mir = 1,1,1
+	istg = 0
+	dstg = 0
+	sidx = -1
+	sqor = -1
+	attm = 0
+	sym = MultiMech.JebPod.Leg_4292868366
+	sym = MultiMech.JebPod.Leg_4292868084
+	sym = MultiMech.JebPod.Leg_4292868042
+	attN = leg,MultiMech.JebPod.Tank_4292872780
+	EVENTS
+	{
+	}
+	ACTIONS
+	{
+	}
+}
+PART
+{
+	part = MultiMech.JebPod.Leg_4292868084
+	partName = LandingLeg
+	pos = 0.2431244,4.623868,0.2431244
+	rot = 0,1,0,-4.371139E-08
+	attRot = 0,0,0,1
+	mir = 1,1,1
+	istg = 0
+	dstg = 0
+	sidx = -1
+	sqor = -1
+	attm = 0
+	sym = MultiMech.JebPod.Leg_4292868366
+	sym = MultiMech.JebPod.Leg_4292868126
+	sym = MultiMech.JebPod.Leg_4292868042
+	attN = leg,MultiMech.JebPod.Tank_4292872780
+	EVENTS
+	{
+	}
+	ACTIONS
+	{
+	}
+}
+PART
+{
+	part = MultiMech.JebPod.Leg_4292868042
+	partName = LandingLeg
+	pos = 0.2431244,4.623868,-0.2431244
+	rot = 0,0.7071068,0,-0.7071068
+	attRot = 0,0,0,1
+	mir = 1,1,1
+	istg = 0
+	dstg = 0
+	sidx = -1
+	sqor = -1
+	attm = 0
+	sym = MultiMech.JebPod.Leg_4292868366
+	sym = MultiMech.JebPod.Leg_4292868126
+	sym = MultiMech.JebPod.Leg_4292868084
+	attN = leg,MultiMech.JebPod.Tank_4292872780
+	EVENTS
+	{
+	}
+	ACTIONS
+	{
+	}
+}
+PART
+{
+	part = MultiMech.JebPod.Leg_4292868366
+	partName = LandingLeg
+	pos = -0.2431244,4.623868,-0.2431244
+	rot = 0,0,0,1
+	attRot = 0,0,0,1
+	mir = 1,1,1
+	istg = 0
+	dstg = 0
+	sidx = -1
+	sqor = -1
+	attm = 0
+	sym = MultiMech.JebPod.Leg_4292868126
+	sym = MultiMech.JebPod.Leg_4292868084
+	sym = MultiMech.JebPod.Leg_4292868042
+	attN = leg,MultiMech.JebPod.Tank_4292872780
+	EVENTS
+	{
+	}
+	ACTIONS
+	{
+	}
+}
+PART
+{
+	part = MultiMech.JebPod.LockDown_4292860778
+	partName = Decoupler
+	pos = 0,4.334259,0
+	rot = 0,0,0,1
+	attRot = 0,0,0,1
+	mir = 1,1,1
+	istg = 1
+	dstg = 1
+	sidx = -1
+	sqor = -1
+	attm = 0
+	attN = top,MultiMech.JebPod.Tank_4292872780
+	EVENTS
+	{
+	}
+	ACTIONS
+	{
+	}
+}
