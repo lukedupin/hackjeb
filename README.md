@@ -1,7 +1,9 @@
 hackjeb
 =======
 
-Mechjeb 1.9.8 updates
+Mechjeb 1.9.8 base code update.
+
+Before I start, all credit goes to the MechJeb team who created a wonderful platform for expansion.
 
 I've updated the default mech jeb client to include new features:
 
