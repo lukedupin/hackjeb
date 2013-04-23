@@ -12,6 +12,8 @@ namespace MuMech
     {
         static MechJebModuleVesselInfo buildSceneDrawer = null;
 
+        MechJebModulePlanitron _planitron = null;
+
         bool _buildSceneShow = true;
         bool buildSceneShow
         {
@@ -80,20 +82,30 @@ namespace MuMech
             {
                 Stopwatch s = Stopwatch.StartNew();
                 double surfaceGravity;
+                double atmos = 1.0;
                 List<Part> parts;
+                bool cur_thrust = true;
                 if (part.vessel == null)
                 {
+                  cur_thrust = false;
                     parts = EditorLogic.SortedShipList;
-                    surfaceGravity = 9.81;
+                    if (_planitron != null)
+                    {
+                      surfaceGravity = 9.81 * _planitron.gravity();
+                      atmos = _planitron.atmos();
+                    }
+                    else
+                      surfaceGravity = 9.81;
                 }
                 else
                 {
                     parts = part.vessel.parts;
                     surfaceGravity = part.vessel.mainBody.GeeASL * 9.81;
+                    atmos = vesselState.atmosphericDensity;
                 }
 //                ffa.analyze(parts, (float)surfaceGravity, 1.0F, false, out timePerStageAtmo, out deltaVPerStageAtmo, out twrPerStage);
                 ffa.analyze(parts, (float)surfaceGravity, 0.0F, false, out timePerStageVac, out deltaVPerStageVac, out twrPerStage);
-                ffa.analyze(parts, (float)surfaceGravity, (float)vesselState.atmosphericDensity, true, out timePerStageCur, out deltaVPerStageCur, out twrPerStageCur);
+                ffa.analyze(parts, (float)surfaceGravity, (float)atmos, cur_thrust, out timePerStageCur, out deltaVPerStageCur, out twrPerStageCur);
                 s.Stop();
 
                 nextSimulationDelayMs = 1000;// 10 * s.ElapsedMilliseconds;
@@ -172,8 +184,11 @@ namespace MuMech
             //GUILayout.Label(vesselState.thrustAvailable.ToString("F0") + " kN", txtR);
             GUILayout.EndHorizontal();
 
-            double gravity = part.vessel.mainBody.gravParameter / Math.Pow(part.vessel.mainBody.Radius + vesselState.altitudeASL, 2);
-            double TWR = vesselState.thrust / (vesselState.mass * gravity);
+            //double gravity = part.vessel.mainBody.gravParameter / Math.Pow(part.vessel.mainBody.Radius + vesselState.altitudeASL, 2);
+            double TWR = -1;// vesselState.thrust / (vesselState.mass * part.vessel.mainBody.GeeASL);
+            for (int stage = timePerStageVac.Length - 1; TWR < 0 && stage >= 0; stage--)
+                if (timePerStageVac[stage] > 0)
+                  TWR = twrPerStageCur[stage];
             GUILayout.BeginHorizontal(GUILayout.ExpandWidth(true));
             GUILayout.Label("Current TWR", GUILayout.ExpandWidth(true));
             GUILayout.Label(TWR.ToString("F2"), txtR);
@@ -264,6 +279,10 @@ namespace MuMech
                 {
                     windowPos = GUILayout.Window(872035, windowPos, buildSceneWindowGUI, getName(), windowOptions());
                 }
+
+                  //Show the planitron
+                if ( _planitron != null && _planitron.enabled )
+                  _planitron.drawVAB(917);
             }
         }
 
@@ -322,6 +341,12 @@ namespace MuMech
             GUIStyle txtR = new GUIStyle(GUI.skin.label);
             txtR.alignment = TextAnchor.UpperRight;
 
+            GUIStyle sty = new GUIStyle(GUI.skin.button);
+            sty.normal.textColor = sty.focused.textColor = Color.white;
+            sty.hover.textColor = sty.active.textColor = Color.yellow;
+            sty.onNormal.textColor = sty.onFocused.textColor = sty.onHover.textColor = sty.onActive.textColor = Color.green;
+            sty.padding = txtR.padding;
+            sty.margin = txtR.margin;
 
 
             GUILayout.BeginVertical();
@@ -342,10 +367,23 @@ namespace MuMech
             }
             GUILayout.EndHorizontal();
 
+                //Alloc my planitron
+            if (_planitron == null)
+              _planitron = new MechJebModulePlanitron(core);
+
+            GUILayout.BeginHorizontal(GUILayout.ExpandWidth(true));
+            GUILayout.Label("Show planitron", GUILayout.ExpandWidth(true));
+            _planitron.enabled = GUILayout.Toggle(_planitron.enabled, _planitron.getPlanet(), sty);
+            GUILayout.EndHorizontal();
 
             GUILayout.BeginHorizontal(GUILayout.ExpandWidth(true));
             GUILayout.Label("Total mass", GUILayout.ExpandWidth(true));
             GUILayout.Label(mass.ToString("F2") + " tons", txtR);
+            GUILayout.EndHorizontal();
+
+            GUILayout.BeginHorizontal(GUILayout.ExpandWidth(true));
+            GUILayout.Label("Surface weight", GUILayout.ExpandWidth(true));
+            GUILayout.Label((mass * _planitron.gravity()).ToString("F2") + " tons", txtR);
             GUILayout.EndHorizontal();
 
             GUILayout.BeginHorizontal(GUILayout.ExpandWidth(true));
@@ -363,7 +401,7 @@ namespace MuMech
             GUILayout.Label(cost.ToString(), txtR);
             GUILayout.EndHorizontal();
 
-            doStagingAnalysisGUI();
+            doStagingAnalysisGUI( true );
 
             GUILayout.EndVertical();
 
@@ -371,7 +409,7 @@ namespace MuMech
         }
 
 
-        protected void doStagingAnalysisGUI()
+        protected void doStagingAnalysisGUI( bool vab = false )
         {
             GUIStyle txtR = new GUIStyle(GUI.skin.label);
             txtR.alignment = TextAnchor.UpperRight;
@@ -416,41 +454,42 @@ namespace MuMech
             }
             GUILayout.EndVertical();
 
-          /*
-            GUILayout.BeginVertical();
-            GUILayout.BeginHorizontal();
-            GUILayout.FlexibleSpace();
-            GUILayout.Label("Atmo. Δv");
-            GUILayout.EndHorizontal();
-            for (int stage = timePerStageAtmo.Length - 1; stage >= 0; stage--)
+            if (vab)
             {
-                if (timePerStageAtmo[stage] > 0)
+              GUILayout.BeginVertical();
+              GUILayout.BeginHorizontal();
+              GUILayout.FlexibleSpace();
+              GUILayout.Label("Atmo. Δv");
+              GUILayout.EndHorizontal();
+              for (int stage = timePerStageCur.Length - 1; stage >= 0; stage--)
+              {
+                if (timePerStageCur[stage] > 0)
                 {
-                    GUILayout.BeginHorizontal();
-                    GUILayout.FlexibleSpace();
-                    GUILayout.Label(String.Format("{0:0} m/s", deltaVPerStageAtmo[stage]), txtR);
-                    GUILayout.EndHorizontal();
+                  GUILayout.BeginHorizontal();
+                  GUILayout.FlexibleSpace();
+                  GUILayout.Label(String.Format("{0:0} m/s", deltaVPerStageCur[stage]), txtR);
+                  GUILayout.EndHorizontal();
                 }
-            }
-            GUILayout.EndVertical();
+              }
+              GUILayout.EndVertical();
 
-            GUILayout.BeginVertical();
-            GUILayout.BeginHorizontal();
-            GUILayout.FlexibleSpace();
-            GUILayout.Label("T");
-            GUILayout.EndHorizontal();
-            for (int stage = timePerStageAtmo.Length - 1; stage >= 0; stage--)
-            {
-                if (timePerStageAtmo[stage] > 0)
+              GUILayout.BeginVertical();
+              GUILayout.BeginHorizontal();
+              GUILayout.FlexibleSpace();
+              GUILayout.Label("Atmo T");
+              GUILayout.EndHorizontal();
+              for (int stage = timePerStageCur.Length - 1; stage >= 0; stage--)
+              {
+                if (timePerStageCur[stage] > 0)
                 {
-                    GUILayout.BeginHorizontal();
-                    GUILayout.FlexibleSpace();
-                    GUILayout.Label(formatTime(timePerStageAtmo[stage]), txtR);
-                    GUILayout.EndHorizontal();
+                  GUILayout.BeginHorizontal();
+                  GUILayout.FlexibleSpace();
+                  GUILayout.Label(formatTime(timePerStageCur[stage]), txtR);
+                  GUILayout.EndHorizontal();
                 }
+              }
+              GUILayout.EndVertical();
             }
-            GUILayout.EndVertical();
-          */
 
             GUILayout.BeginVertical();
             GUILayout.BeginHorizontal();
@@ -486,22 +525,25 @@ namespace MuMech
             }
             GUILayout.EndVertical();
 
-            GUILayout.BeginVertical();
-            GUILayout.BeginHorizontal();
-            GUILayout.FlexibleSpace();
-            GUILayout.Label("Current T");
-            GUILayout.EndHorizontal();
-            for (int stage = timePerStageVac.Length - 1; stage >= 0; stage--)
+            if (!vab)
             {
+              GUILayout.BeginVertical();
+              GUILayout.BeginHorizontal();
+              GUILayout.FlexibleSpace();
+              GUILayout.Label("Current T");
+              GUILayout.EndHorizontal();
+              for (int stage = timePerStageVac.Length - 1; stage >= 0; stage--)
+              {
                 if (timePerStageVac[stage] > 0)
                 {
-                    GUILayout.BeginHorizontal();
-                    GUILayout.FlexibleSpace();
-                    GUILayout.Label(formatTime(timePerStageCur[stage]), txtR);
-                    GUILayout.EndHorizontal();
+                  GUILayout.BeginHorizontal();
+                  GUILayout.FlexibleSpace();
+                  GUILayout.Label(formatTime(timePerStageCur[stage]), txtR);
+                  GUILayout.EndHorizontal();
                 }
+              }
+              GUILayout.EndVertical();
             }
-            GUILayout.EndVertical();
 
             GUILayout.EndHorizontal();
         }
