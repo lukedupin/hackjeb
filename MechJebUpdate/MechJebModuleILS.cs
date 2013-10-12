@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using MuMech;
 using UnityEngine;
-using SharpLua.LuaTypes;
+//using SharpLua.LuaTypes;
 
 namespace MuMech
 {
@@ -70,7 +70,7 @@ namespace MuMech
 
             base.onSaveGlobalSettings(settings);
         }
-
+/*
         public override void registerLuaMembers(LuaTable index)
         {
             index.Register("ilsHold", proxyHold);
@@ -114,6 +114,7 @@ namespace MuMech
             return LuaNil.Nil;
         }
 
+*/
         public void hold(double altitude, double heading)
         {
             this.enabled = true;

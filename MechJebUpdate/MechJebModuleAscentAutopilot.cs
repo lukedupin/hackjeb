@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using UnityEngine;
-using SharpLua.LuaTypes;
+//using SharpLua.LuaTypes;
 
 /*
  * Todo:
@@ -55,6 +55,7 @@ namespace MuMech
         public const double BEACH_ALTITUDE = 100001.6;
         public const double BEACH_INCLINATION = 24.0;
 
+      /*
         public override void registerLuaMembers(LuaTable index)
         {
             index.Register("launchTo", proxyLaunchTo);
@@ -89,6 +90,7 @@ namespace MuMech
 
             return LuaNil.Nil;
         }
+      */
 
         //programmatic interface to the module. 
         public void launchTo(double orbitAltitude, double orbitInclination)

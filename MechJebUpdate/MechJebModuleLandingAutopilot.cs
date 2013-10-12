@@ -5,7 +5,7 @@ using System.Text;
 using System.Diagnostics;
 using UnityEngine;
 using OrbitExtensions;
-using SharpLua.LuaTypes;
+//using SharpLua.LuaTypes;
 
 /*
  * Todo:
@@ -30,6 +30,7 @@ namespace MuMech
 
         public MechJebModuleLandingAutopilot(MechJebCore core) : base(core) { }
 
+      /*
         public override void registerLuaMembers(LuaTable index)
         {
             index.Register("land", proxyLand);
@@ -42,6 +43,7 @@ namespace MuMech
             land();
             return LuaNil.Nil;
         }
+      */
 
         public void land()
         {
@@ -52,6 +54,7 @@ namespace MuMech
             FlightInputHandler.SetNeutralControls();
         }
 
+      /*
         public LuaValue proxyLandAt(LuaValue[] args)
         {
             if (args.Count() < 2 && args.Count() > 3)
@@ -99,6 +102,7 @@ namespace MuMech
             landAt(argLatitude, argLongitude);
             return LuaNil.Nil;
         }
+      */
 
         //programmatic interface to land at a specific target. 
         public void landAt(double latitude, double longitude)
@@ -136,7 +140,7 @@ namespace MuMech
                 deorbiting = false;
             }
         }
-
+/*
         public LuaValue proxySetLanding(LuaValue[] args)
         {
             if (args.Count() < 2)
@@ -168,6 +172,7 @@ namespace MuMech
             setLanding(argLatitude, argLongitude);
             return LuaNil.Nil;
         }
+      */
 
         public void setLanding(double latitude, double longitude)
         {

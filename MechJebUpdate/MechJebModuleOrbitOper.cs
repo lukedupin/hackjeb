@@ -5,7 +5,7 @@ using System.Text;
 using System.Text.RegularExpressions;
 using UnityEngine;
 using OrbitExtensions;
-using SharpLua.LuaTypes;
+//using SharpLua.LuaTypes;
 /*
  * Todo:
  * 
@@ -26,6 +26,7 @@ namespace MuMech
 
         
 
+      /*
         public override void registerLuaMembers(LuaTable index)
         {
             index.Register("changePe", proxyChangePe);
@@ -216,6 +217,7 @@ namespace MuMech
 
             return LuaNil.Nil;
         }
+      */
 
 
         public override void onControlLost()

@@ -5,8 +5,8 @@ using System.Linq;
 using UnityEngine;
 using MuMech;
 using System.Reflection;
-using SharpLua;
-using SharpLua.LuaTypes;
+//using SharpLua;
+//using SharpLua.LuaTypes;
 
 namespace MuMech
 {
@@ -84,7 +84,7 @@ namespace MuMech
             }
         }
 
-        public MechJebModuleAutom8 autom8 = null;
+//        public MechJebModuleAutom8 autom8 = null;
 
         public VesselState vesselState;
 
@@ -1315,9 +1315,9 @@ namespace MuMech
         {
             vesselState = new VesselState();
 
-            Version v = Assembly.GetAssembly(typeof(MechJebCore)).GetName().Version;
+//            Version v = Assembly.GetAssembly(typeof(MechJebCore)).GetName().Version;
 
-            version = v.Major.ToString() + "." + v.Minor.ToString() + "." + v.Build.ToString();
+            version = "HackJeb 1.0";// v.Major.ToString() + "." + v.Minor.ToString() + "." + v.Build.ToString();
 
             modules.Add(new MechJebModuleSmartASS(this));
             modules.Add(new MechJebModuleTranslatron(this));
@@ -1338,8 +1338,8 @@ namespace MuMech
 
             //modules.Add(new MechJebModuleAscension(this));
 
-            autom8 = new MechJebModuleAutom8(this);
-            modules.Add(autom8);
+            //autom8 = new MechJebModuleAutom8(this);
+            //modules.Add(autom8);
 
             foreach (ComputerModule module in modules)
             {
@@ -1473,7 +1473,7 @@ namespace MuMech
 
                 if (part.vessel == FlightGlobals.ActiveVessel)
                 {
-                    MechJebModuleAutom8.instance = autom8;
+//                    MechJebModuleAutom8.instance = autom8;
                 }
 
                 if (part.vessel.packed)
@@ -1964,7 +1964,7 @@ namespace MuMech
             }
             return null;
         }
-
+/*
         public LuaValue proxyGetModule(LuaValue[] arg)
         {
             return ObjectToLua.ToLuaValue(getModule((arg.Count() > 0) ? arg[0].ToString() : ""));
@@ -2270,10 +2270,10 @@ namespace MuMech
                 m.registerLuaMembers(index);
             }
         }
-
+*/
         public void MechJebLua(BaseEventData data)
         {
-            autom8.runScript(data.GetString("script"));
+//            autom8.runScript(data.GetString("script"));
         }
 
         static void print(String s)

@@ -40,13 +40,13 @@ namespace MuMech
         [KSPField(isPersistant = false)]
         public string onGUI = "";
 
-        protected LuaTable luaEnv;
+//        protected LuaTable luaEnv;
         protected bool fileLoaded = false;
         protected WWW loader;
 
         public override void OnStart(StartState state)
         {
-            luaEnv = LuaRuntime.CreateGlobalEnviroment();
+//            luaEnv = LuaRuntime.CreateGlobalEnviroment();
 
             vessel.OnFlyByWire += OnFlyByWire;
 
@@ -57,6 +57,7 @@ namespace MuMech
 
         public void MaybeRunCode(string code)
         {
+          /*
             if ((luaEnv == null) || (part.State == PartStates.DEAD))
             {
                 return;
@@ -126,6 +127,7 @@ namespace MuMech
                     print("Exception " + e.Message + "\n" + e.StackTrace);
                 }
             }
+          */
         }
 
         public override void OnActive()

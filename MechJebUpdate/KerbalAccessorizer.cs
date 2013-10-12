@@ -10,14 +10,17 @@ class MuMechKerbalAccessorizerGhost : MonoBehaviour
 
     void Start()
     {
+      /*
         glasses = PartReader.Read(KSPUtil.ApplicationRootPath + "Parts/mumech_accessorizer/", "model", ".mu");
         glasses.name = "glasses";
         glasses.transform.position = new Vector3(1e10f, 1e10f, 1e10f);
         GameObject.DontDestroyOnLoad(glasses);
+      */
     }
 
     void Update()
     {
+      /*
         if (FlightGlobals.ready)
         {
             foreach (Vessel v in FlightGlobals.Vessels)
@@ -36,6 +39,7 @@ class MuMechKerbalAccessorizerGhost : MonoBehaviour
                 }
             }
         }
+      */
     }
 }
 

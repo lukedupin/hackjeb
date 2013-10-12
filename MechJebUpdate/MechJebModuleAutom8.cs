@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using UnityEngine;
-using SharpLua;
-using SharpLua.LuaTypes;
+//using SharpLua;
+//using SharpLua.LuaTypes;
 using System.Threading;
 
 namespace MuMech
@@ -17,8 +17,8 @@ namespace MuMech
         public List<string> history = new List<string>();
         public int historyPos = 0;
 
-        public LuaTable luaEnv;
-        public LuaTable mechjeb;
+//        public LuaTable luaEnv;
+        //public LuaTable mechjeb;
 
         static MechJebModuleAutom8()
         {
